@@ -1,0 +1,3 @@
+Running tests in environment with BASE_URL= https://automationexercise.com/
+🔍 Forced USERNAME: "rameshqaonline@gmail.com"
+🔍 Debugging PASSWORD: "Test@123"

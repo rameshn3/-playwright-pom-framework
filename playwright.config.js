@@ -1,7 +1,9 @@
 // @ts-check
-import { defineConfig, devices } from '@playwright/test';
+require('dotenv').config();
+import { defineConfig} from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'path';
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -10,7 +12,7 @@ import path from 'path';
 // import path from 'path';
 // Load environment variables based on NODE_ENV (default: local)
 //const ENV = process.env.NODE_ENV || 'local';
-const ENV = process.env.NODE_ENV;
+const ENV = process.env.ENV|| 'dev';
 dotenv.config({ path: path.resolve(__dirname, `configs/.env.${ENV}`) });
 
 console.log(`Running tests in ${ENV} environment with BASE_URL=${process.env.BASE_URL}`);
@@ -25,7 +27,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
+  retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   timeout:30*1000, //30 s timeout per test
@@ -73,7 +75,7 @@ export default defineConfig({
         }
       },
     },
-    {
+    /*{
       name:`edge`,
       use:{
         browserName:`chromium`,
@@ -173,6 +175,6 @@ export default defineConfig({
   //   command: 'npm run start',
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
-  // },
+  // },*/
 });
 
