@@ -9,7 +9,8 @@ import path from 'path';
 // import dotenv from 'dotenv';
 // import path from 'path';
 // Load environment variables based on NODE_ENV (default: local)
-const ENV = process.env.NODE_ENV || 'local';
+//const ENV = process.env.NODE_ENV || 'local';
+const ENV = process.env.NODE_ENV;
 dotenv.config({ path: path.resolve(__dirname, `configs/.env.${ENV}`) });
 
 console.log(`Running tests in ${ENV} environment with BASE_URL=${process.env.BASE_URL}`);
@@ -42,7 +43,8 @@ export default defineConfig({
     // baseURL: 'http://127.0.0.1:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    //baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: process.env.BASE_URL,
     headless: process.env.HEADLESS === 'true',
     ignoreHTTPSErrors: true,
     trace: 'retain-on-failure',
