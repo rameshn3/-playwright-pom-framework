@@ -7,7 +7,7 @@ class ContactUsFormPage{
         this.contactUsLink = page.locator("//a[normalize-space()='Contact us']");
         this.getInTouchHeader = page.getByRole('heading',{name:'Get In Touch'});
         this.nameEditbox = page.getByPlaceholder('Name');
-        this.emailEditbox = page.getByPlaceholder('Email');
+        this.emailEditbox = page.locator("input[data-qa='email']");
         this.subjectEditbox = page.getByPlaceholder('Subject');
         this.messageTextAreaBox = page.getByPlaceholder('Your Message Here');
         this.chooseFileBtn = page.locator("//input[@name='upload_file']");
@@ -17,20 +17,20 @@ class ContactUsFormPage{
     }
 
     async verifyContactUsLink(){
-        expect(this.contactUsLink).toBeVisible();
-        console.log(this.contactUsLink.textContent());
+        expect(await this.contactUsLink).toBeVisible();
+        console.log(await this.contactUsLink.textContent());
     }
 
     async clickContactUsLink(){
-        this.contactUsLink.click();
+       await this.contactUsLink.click();
        
     }
 
     async fillContactUsForm(name,email,subject,messageBody,filePath){
         await this.nameEditbox.fill(name);
         await this.emailEditbox.fill(email);
-        await  this.subjectEditbox.fill(subject);
-        await  this.messageTextAreaBox.fill(messageBody);
+        await this.subjectEditbox.fill(subject);
+        await this.messageTextAreaBox.fill(messageBody);
         await this.chooseFileBtn.setInputFiles(filePath); 
     }
     
@@ -45,7 +45,7 @@ class ContactUsFormPage{
     }
 
     async clickHomeBtn(){
-        await  this.HomeBtn.click();
+        await this.HomeBtn.click();
 
     }
 }

@@ -1,1 +1,0 @@
-Running tests in environment with BASE_URL= https://automationexercise.com/

@@ -30,7 +30,7 @@ export default defineConfig({
   retries: process.env.CI ? 1 : 0,
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
-  timeout:30*1000, //30 s timeout per test
+  //timeout:30*1000, //30 s timeout per test
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [['html',{outputFolder:'results/html-report'}],
   ["allure-playwright",{

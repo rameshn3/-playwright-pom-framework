@@ -43,6 +43,27 @@ class PlaywrightUtils {
   logMessage(message) {
     console.log(`🔹 LOG: ${message}`);
   }
+
+  /**
+ * Handles JavaScript alerts in Playwright
+ * @param {string} action - Action to perform ('accept' or 'dismiss')
+ * @param {string} expectedMessage - (Optional) Expected alert message to validate
+ */
+  async handleAlert(action = 'accept', expectedMessage = '') {
+    this.page.on('dialog', async dialog => {
+      console.log(`Alert message: ${dialog.message()}`);
+      if (expectedMessage && dialog.message() !== expectedMessage) {
+        console.warn(`Unexpected alert! Expected: "${expectedMessage}", got: "${dialog.message()}"`);
+      }
+      if (action === 'accept') {
+        await dialog.accept();
+        console.log('Alert accepted');
+      } else {
+        await dialog.dismiss();
+        console.log('Alert dismissed');
+      }
+    });
+  }
 }
 
 module.exports = PlaywrightUtils;
