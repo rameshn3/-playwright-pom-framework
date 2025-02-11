@@ -45,7 +45,7 @@ javascript
 const { test, expect } = require('@playwright/test');
 
 test('should display the correct title', async ({ page }) => {
-  await page.goto('https://example.com');
+  await page.goto('https://automationexercise.com/');
   expect(await page.title()).toBe('Example Domain');
 });
 API Tests
